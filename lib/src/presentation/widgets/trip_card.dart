@@ -19,73 +19,70 @@ class TripCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final df = DateFormat('MMM d, yyyy');
 
-    // Keep the card proportion dynamic but stable everywhere (Grid/List).
-    // Figma: W=243, H=322  -> width/height ≈ 0.754
-    return AspectRatio(
-      aspectRatio: 243 / 322,
-      child: ClipRRect(
-        borderRadius: DS.r16,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Image occupies top 60% of the card
-            Align(
-              alignment: Alignment.topCenter,
-              child: FractionallySizedBox(
-                heightFactor: 0.60,
-                widthFactor: 1.0,
-                child: Image.network(trip.coverImage, fit: BoxFit.cover),
+    return ClipRRect(
+      borderRadius: DS.r16,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Image occupies top 60% of the card
+          Align(
+            alignment: Alignment.topCenter,
+            child: FractionallySizedBox(
+              heightFactor: 0.60,
+              widthFactor: 1.0,
+              child: Image.network(trip.coverImage, fit: BoxFit.cover),
+            ),
+          ),
+
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.black54,
+                shape: BoxShape.circle,
+              ),
+              margin: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(8.0),
+              child: const Icon(
+                Icons.more_horiz,
+                color: Colors.white,
+                size: 20,
               ),
             ),
+          ),
 
-            // Gradient overlay (your current look, don't change)
-            Positioned.fill(
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Color(0xFF171717)],
-                    stops: [0.10, 0.55],
-                  ),
+          // Gradient overlay (your current look, don't change)
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Color(0xFF171717)],
+                  stops: [0.10, 0.55],
                 ),
               ),
             ),
+          ),
 
-            // Foreground content — spaced to match design
-            Positioned.fill(
+          // Foreground content — spaced to match design
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: FractionallySizedBox(
+              heightFactor: 0.5,
+              widthFactor: 1.0,
               child: Padding(
                 padding: const EdgeInsets.all(14),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Top-right ellipsis
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.black54,
-                          shape: BoxShape.circle,
-                        ),
-                        padding: const EdgeInsets.all(6),
-                        child: const Icon(
-                          Icons.more_horiz,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-
-                    const Spacer(flex: 1),
-
-                    // Status chip
                     _StatusChip(
                       label: trip.status,
                       color: _statusColor(trip.status),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 16.0),
 
-                    // Title
                     Text(
                       trip.title,
                       maxLines: 1,
@@ -95,9 +92,8 @@ class TripCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 12.0),
 
-                    // Date row
                     Row(
                       children: [
                         const Icon(
@@ -113,8 +109,7 @@ class TripCard extends StatelessWidget {
                         ),
                       ],
                     ),
-
-                    const Spacer(flex: 2),
+                    const SizedBox(height: 10),
 
                     // Divider + participants row pinned to bottom
                     Divider(color: Colors.white.withOpacity(0.25), height: 0.5),
@@ -134,8 +129,8 @@ class TripCard extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
