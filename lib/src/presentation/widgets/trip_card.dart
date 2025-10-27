@@ -19,118 +19,126 @@ class TripCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final df = DateFormat('MMM d, yyyy');
 
-    return ClipRRect(
-      borderRadius: DS.r16,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Image occupies top 60% of the card
-          Align(
-            alignment: Alignment.topCenter,
-            child: FractionallySizedBox(
-              heightFactor: 0.60,
-              widthFactor: 1.0,
-              child: Image.network(trip.coverImage, fit: BoxFit.cover),
-            ),
-          ),
-
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.black54,
-                shape: BoxShape.circle,
-              ),
-              margin: const EdgeInsets.all(16.0),
-              padding: const EdgeInsets.all(8.0),
-              child: const Icon(
-                Icons.more_horiz,
-                color: Colors.white,
-                size: 20,
+    return AspectRatio(
+      // <-- add this line
+      aspectRatio: 243 / 322,
+      child: ClipRRect(
+        borderRadius: DS.r16,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Image occupies top 60% of the card
+            Align(
+              alignment: Alignment.topCenter,
+              child: FractionallySizedBox(
+                heightFactor: 0.60,
+                widthFactor: 1.0,
+                child: Image.network(trip.coverImage, fit: BoxFit.cover),
               ),
             ),
-          ),
 
-          // Gradient overlay (your current look, don't change)
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Color(0xFF171717)],
-                  stops: [0.10, 0.55],
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.black54,
+                  shape: BoxShape.circle,
+                ),
+                margin: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
+                child: const Icon(
+                  Icons.more_horiz,
+                  color: Colors.white,
+                  size: 20,
                 ),
               ),
             ),
-          ),
 
-          // Foreground content — spaced to match design
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: FractionallySizedBox(
-              heightFactor: 0.5,
-              widthFactor: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _StatusChip(
-                      label: trip.status,
-                      color: _statusColor(trip.status),
-                    ),
-                    const SizedBox(height: 16.0),
+            // Gradient overlay (your current look, don't change)
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Color(0xFF171717)],
+                    stops: [0.10, 0.55],
+                  ),
+                ),
+              ),
+            ),
 
-                    Text(
-                      trip.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+            // Foreground content — spaced to match design
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FractionallySizedBox(
+                heightFactor: 0.5,
+                widthFactor: 1.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _StatusChip(
+                        label: trip.status,
+                        color: _statusColor(trip.status),
                       ),
-                    ),
-                    const SizedBox(height: 12.0),
+                      const SizedBox(height: 16.0),
 
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.calendar_today,
-                          size: 14,
-                          color: Colors.white70,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          '${trip.nights} Nights (${df.format(trip.startDate)} - ${df.format(trip.endDate)})',
-                          style: Theme.of(context).textTheme.labelMedium
-                              ?.copyWith(color: Colors.white70),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
+                      Text(
+                        trip.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      const SizedBox(height: 12.0),
 
-                    // Divider + participants row pinned to bottom
-                    Divider(color: Colors.white.withOpacity(0.25), height: 0.5),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        _ParticipantsRow(avatars: trip.participantAvatars),
-                        const Spacer(),
-                        Text(
-                          '${trip.unfinishedTasks} unfinished tasks',
-                          style: Theme.of(context).textTheme.labelMedium
-                              ?.copyWith(color: Colors.white70),
-                        ),
-                      ],
-                    ),
-                  ],
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.calendar_today,
+                            size: 14,
+                            color: Colors.white70,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            '${trip.nights} Nights (${df.format(trip.startDate)} - ${df.format(trip.endDate)})',
+                            style: Theme.of(context).textTheme.labelMedium
+                                ?.copyWith(color: Colors.white70),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+
+                      // Divider + participants row pinned to bottom
+                      Divider(
+                        color: Colors.white.withOpacity(0.25),
+                        height: 0.5,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          _ParticipantsRow(avatars: trip.participantAvatars),
+                          const Spacer(),
+                          Text(
+                            '${trip.unfinishedTasks} unfinished tasks',
+                            style: Theme.of(context).textTheme.labelMedium
+                                ?.copyWith(color: Colors.white70),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
