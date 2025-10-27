@@ -36,10 +36,10 @@ class R {
   /// Horizontal padding that scales a bit with width to avoid huge gutters.
   static double hPadding(BuildContext c) {
     final w = MediaQuery.of(c).size.width;
-    if (w >= 1600) return 32;
-    if (w >= 1200) return 28;
-    if (w >= 900) return 24;
-    if (w >= 700) return 20;
+    if (w >= 1600) return w * 0.05;
+    if (w >= 1200) return w * 0.05;
+    if (w >= 900) return w * 0.05;
+    if (w >= 700) return w * 0.05;
     return 16;
   }
 

@@ -44,7 +44,7 @@
         "end": "20-01-2024"
       },
       "participants": [
-        { "name": "Liam Wong", "avatar_url": "https://randomuser.me/photos/4.jpg" }
+        { "name": "Lars Jensen", "avatar_url": "https://randomuser.me/api/portraits/men/52.jpg" }
       ],
       "unfinished_tasks": 4,
       "cover_image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
@@ -58,8 +58,8 @@
         "end": "20-01-2024"
       },
       "participants": [
-        { "name": "Amélie Laurent", "avatar_url": "https://randomuser.me/photos/7.jpg" },
-        { "name": "Mateo Alvarez", "avatar_url": "https://randomuser.me/photos/8.jpg" }
+        { "name": "Elena Petrova", "avatar_url": "https://randomuser.me/api/portraits/women/65.jpg" },
+        { "name": "Lars Jensen", "avatar_url": "https://randomuser.me/api/portraits/men/52.jpg" }
       ],
       "unfinished_tasks": 4,
       "cover_image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"
@@ -91,14 +91,14 @@
         "end": "20-01-2024"
       },
       "participants": [
-        { "name": "Haruto Tanaka", "avatar_url": "https://randomuser.me/photos/16.jpg" },
-        { "name": "Maria Ivanova", "avatar_url": "https://randomuser.me/photos/17.jpg" },
-        { "name": "Lucas Brown", "avatar_url": "https://randomuser.me/photos/18.jpg" },
-        { "name": "Saanvi Patel", "avatar_url": "https://randomuser.me/photos/19.jpg" },
-        { "name": "William Wilson", "avatar_url": "https://randomuser.me/photos/20.jpg" }
+        { "name": "Emily Clarke", "avatar_url": "https://randomuser.me/api/portraits/men/19.jpg" },
+        { "name": "Nina Müller", "avatar_url": "https://randomuser.me/api/portraits/women/72.jpg" },
+        { "name": "Sofia Rossi", "avatar_url": "https://randomuser.me/api/portraits/women/53.jpg" },
+        { "name": "Elena Petrova", "avatar_url": "https://randomuser.me/api/portraits/women/65.jpg" },
+        { "name": "Lars Jensen", "avatar_url": "https://randomuser.me/api/portraits/men/52.jpg" }
       ],
       "unfinished_tasks": 4,
-      "cover_image": "https://images.unsplash.com/photo-1462129487128-340e6b021fd7?auto=format&fit=crop&w=800&q=80"
+      "cover_image": "https://images.unsplash.com/photo-1465156799763-2c087c332922?auto=format&fit=crop&w=800&q=80"
     },
     {
       "id": "7",
@@ -109,9 +109,11 @@
         "end": "20-01-2024"
       },
       "participants": [
-        { "name": "James Anderson", "avatar_url": "https://randomuser.me/photos/23.jpg" },
-        { "name": "Sophia Lee", "avatar_url": "https://randomuser.me/photos/24.jpg" },
-        { "name": "Noah Davis", "avatar_url": "https://randomuser.me/photos/25.jpg" }
+        { "name": "Emily Clarke", "avatar_url": "https://randomuser.me/api/portraits/men/19.jpg" },
+        { "name": "Nina Müller", "avatar_url": "https://randomuser.me/api/portraits/women/72.jpg" },
+        { "name": "Sofia Rossi", "avatar_url": "https://randomuser.me/api/portraits/women/53.jpg" },
+        { "name": "Elena Petrova", "avatar_url": "https://randomuser.me/api/portraits/women/65.jpg" },
+        { "name": "Lars Jensen", "avatar_url": "https://randomuser.me/api/portraits/men/52.jpg" }
       ],
       "unfinished_tasks": 4,
       "cover_image": "https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=800&q=80"

@@ -141,7 +141,7 @@ class _TopNavBar extends StatelessWidget {
       color: DS.bg,
       padding: EdgeInsets.symmetric(
         horizontal: R.hPadding(context),
-        vertical: isMobile ? 10 : 14,
+        vertical: isMobile ? 10 : 32,
       ),
       child: Row(
         children: [
