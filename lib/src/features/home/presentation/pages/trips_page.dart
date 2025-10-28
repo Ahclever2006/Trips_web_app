@@ -138,6 +138,7 @@ class _TopNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = R.hPadding(context);
     final bp = R.bp(context);
     final showTabs = bp != Breakpoint.mobile;
 
@@ -151,10 +152,11 @@ class _TopNavBar extends StatelessWidget {
           ), // grey hairline
         ),
       ),
-      padding: EdgeInsets.symmetric(
-        horizontal: R.hPadding(context),
-        // keep compact so the underline sits near the hairline
-        vertical: isMobile ? 10 : 12,
+      padding: EdgeInsets.only(
+        left: h,
+        right: h,
+        top: isMobile ? 8 : 10,
+        bottom: 1,
       ),
       child: Row(
         children: [
@@ -178,7 +180,16 @@ class _TopNavBar extends StatelessWidget {
           // push tabs toward the right block (like Figma)
           const Spacer(),
 
-          if (showTabs) const _NavTabs(activeLabel: 'Items'),
+          if (showTabs)
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 1,
+              ), // sit right above hairline
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: const _NavTabs(activeLabel: 'Items'),
+              ),
+            ),
 
           const _VDivider(), // vertical separator
 
@@ -272,14 +283,16 @@ class _Tab extends StatelessWidget {
             fontWeight: active ? FontWeight.w600 : FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 2), // very small gap to sit near the hairline
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 160),
-          height: 3,
-          width: active ? 36 : 0, // compact underline like Figma
-          decoration: BoxDecoration(
-            color: active ? DS.accent : Colors.transparent,
-            borderRadius: BorderRadius.circular(2),
+        Transform.translate(
+          offset: const Offset(0, 10), // nudge downward
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            height: 3,
+            width: active ? 36 : 0, // compact underline like Figma
+            decoration: BoxDecoration(
+              color: active ? DS.accent : Colors.transparent,
+              borderRadius: BorderRadius.circular(2),
+            ),
           ),
         ),
       ],
