@@ -104,23 +104,31 @@ class TripCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8.0),
 
                     // Divider + participants row pinned to bottom
-                    Divider(color: Colors.white.withOpacity(0.25), height: 0.5),
+                    Divider(
+                      color: Colors.white.withOpacity(0.25),
+                      height: 0.25,
+                    ),
                     const SizedBox(height: 8.0),
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
+                          flex: 6, // Fixed width for participants
                           child: _ParticipantsRow(
                             avatars: trip.participantAvatars,
                           ),
                         ),
-                        Text(
-                          '${trip.unfinishedTasks} unfinished tasks',
-                          style: Theme.of(context).textTheme.labelMedium
-                              ?.copyWith(color: Colors.white70),
+                        Expanded(
+                          flex: 4,
+                          child: Text(
+                            '${trip.unfinishedTasks} unfinished tasks',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.right,
+                            style: Theme.of(context).textTheme.labelMedium
+                                ?.copyWith(color: Colors.white70),
+                          ),
                         ),
                       ],
                     ),
@@ -171,31 +179,38 @@ class _ParticipantsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final shown = avatars.take(_maxToShow).toList();
     final extra = avatars.length - shown.length;
-    return Row(
-      children: [
-        for (int i = 0; i < shown.length; i++)
-          Transform.translate(
-            offset: Offset(i * -6, 0),
-            child: CircleAvatar(
-              radius: 12,
-              backgroundImage: NetworkImage(shown[i]),
-            ),
-          ),
-        if (extra > 0)
-          Transform.translate(
-            offset: Offset(shown.length * -6.0, 0),
-            child: CircleAvatar(
-              radius: 12,
-              backgroundColor: Colors.grey.shade700,
-              child: Text(
-                '+$extra',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelSmall?.copyWith(color: DS.accent),
+
+    const double radius = 16.0; // Fixed smaller radius
+    const double overlap = 12.0; // Fixed overlap value
+
+    return SizedBox(
+      height: radius * 2,
+      child: Stack(
+        children: [
+          for (int i = 0; i < shown.length; i++)
+            Positioned(
+              left: i * (radius * 2 - overlap),
+              child: CircleAvatar(
+                radius: radius,
+                backgroundImage: NetworkImage(shown[i]),
               ),
             ),
-          ),
-      ],
+          if (extra > 0)
+            Positioned(
+              left: shown.length * (radius * 2 - overlap),
+              child: CircleAvatar(
+                radius: radius,
+                backgroundColor: Colors.grey.shade700,
+                child: Text(
+                  '+$extra',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: DS.accent),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

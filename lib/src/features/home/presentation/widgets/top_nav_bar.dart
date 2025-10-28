@@ -27,7 +27,7 @@ class TopNavBar extends StatelessWidget {
         color: Colors.black,
         border: Border(
           bottom: BorderSide(
-            color: Color(0xFF2A2A2A),
+            color: Color(0xFF262626),
             width: 1,
           ), // grey hairline
         ),
