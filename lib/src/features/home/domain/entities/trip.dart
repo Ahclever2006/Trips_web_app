@@ -1,7 +1,9 @@
+import 'package:equatable/equatable.dart';
+import '../enums/trip_status.dart';
 
-class Trip {
+class Trip extends Equatable {
   final String id;
-  final String status;
+  final String status; // Keep as String for JSON serialization
   final String title;
   final DateTime startDate;
   final DateTime endDate;
@@ -9,7 +11,7 @@ class Trip {
   final int unfinishedTasks;
   final String coverImage;
 
-  Trip({
+  const Trip({
     required this.id,
     required this.status,
     required this.title,
@@ -21,4 +23,17 @@ class Trip {
   });
 
   int get nights => endDate.difference(startDate).inDays;
+  TripStatus get tripStatus => TripStatus.fromString(status);
+
+  @override
+  List<Object?> get props => [
+    id,
+    status,
+    title,
+    startDate,
+    endDate,
+    participantAvatars,
+    unfinishedTasks,
+    coverImage,
+  ];
 }

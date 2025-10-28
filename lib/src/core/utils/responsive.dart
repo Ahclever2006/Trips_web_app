@@ -51,11 +51,11 @@ class R {
   static double tripCardHeightFactor(BuildContext c) {
     switch (bp(c)) {
       case Breakpoint.lgDesktop:
-        return 0.60;
+        return 0.65;
       case Breakpoint.desktop:
-        return 0.63;
+        return 0.69;
       case Breakpoint.smDesktop:
-        return 0.66;
+        return 0.69;
       case Breakpoint.tablet:
         return 0.69;
       case Breakpoint.mobile:
