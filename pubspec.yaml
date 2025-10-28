@@ -27,6 +27,7 @@ flutter:
   assets:
     - assets/data/trips_mock.json
     - assets/images/
+    - assets/icons/
   # fonts:
   #   - family: Inter
   #     fonts:

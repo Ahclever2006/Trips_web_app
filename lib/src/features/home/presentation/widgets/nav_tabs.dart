@@ -28,8 +28,6 @@ class NavTabs extends ConsumerWidget {
               ),
               const SizedBox(width: 28),
             ],
-            // Add a little trailing padding so last tab doesn't butt up against icons
-            const SizedBox(width: 8),
           ],
         ),
       ),
@@ -65,7 +63,7 @@ class NavTab extends StatelessWidget {
       children: [
         Text(label, style: textStyle),
         Transform.translate(
-          offset: const Offset(0, 14.0), // nudge downward
+          offset: const Offset(0, 24.0), // nudge downward
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             height: 3,

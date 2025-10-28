@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/design_system/design_tokens.dart';
+import '../../../../core/assets.dart';
+import '../../../../core/utils/svg_helper.dart';
 import '../../domain/entities/trip.dart';
 
 class TripCard extends StatelessWidget {
@@ -96,9 +98,10 @@ class TripCard extends StatelessWidget {
 
                     Row(
                       children: [
-                        const Icon(
-                          Icons.calendar_today,
-                          size: 14,
+                        SvgHelper.asset(
+                          Assets.calendar,
+                          width: 14,
+                          height: 14,
                           color: Colors.white70,
                         ),
                         const SizedBox(width: 6),
@@ -163,12 +166,14 @@ class _StatusChip extends StatelessWidget {
 
 class _ParticipantsRow extends StatelessWidget {
   final List<String> avatars;
-  final int maxToShow;
-  const _ParticipantsRow({required this.avatars, this.maxToShow = 3});
+  static const int _maxToShow =
+      3; // Fixed value since it's not configurable in our UI
+
+  const _ParticipantsRow({required this.avatars});
 
   @override
   Widget build(BuildContext context) {
-    final shown = avatars.take(maxToShow).toList();
+    final shown = avatars.take(_maxToShow).toList();
     final extra = avatars.length - shown.length;
     return Row(
       children: [
