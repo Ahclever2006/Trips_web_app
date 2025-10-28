@@ -107,16 +107,20 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                               ),
                             );
                           }
-                          return GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: cols, // now 5 on very wide
-                                  mainAxisSpacing: 16,
-                                  crossAxisSpacing: 16,
-                                  childAspectRatio: R.gridRatio(context),
-                                ),
-                            itemCount: s.visible.length,
-                            itemBuilder: (_, i) => TripCard(trip: s.visible[i]),
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: cols, // now 5 on very wide
+                                    mainAxisSpacing: 20,
+                                    crossAxisSpacing: 16,
+                                    childAspectRatio: R.gridRatio(context),
+                                  ),
+                              itemCount: s.visible.length,
+                              itemBuilder: (_, i) =>
+                                  TripCard(trip: s.visible[i]),
+                            ),
                           );
                         },
                       ),
