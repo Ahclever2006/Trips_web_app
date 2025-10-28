@@ -75,6 +75,6 @@ class R {
 
   /// Vertical spacing above the grid.
   static double topSpacing(BuildContext c) {
-    return bp(c) == Breakpoint.mobile ? 16 : 20;
+    return bp(c) == Breakpoint.mobile ? 16 : 32;
   }
 }

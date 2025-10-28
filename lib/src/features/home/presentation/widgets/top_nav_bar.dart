@@ -34,7 +34,7 @@ class TopNavBar extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 16.0 : h - 16.0,
-        vertical: isMobile ? 8 : 10,
+        vertical: isMobile ? 12 : 16,
       ),
       child: Row(
         children: [
@@ -43,12 +43,7 @@ class TopNavBar extends StatelessWidget {
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
               onPressed: onOpenDrawer,
-              icon: SvgHelper.asset(
-                Assets.menu,
-                width: 24,
-                height: 24,
-                color: Colors.white,
-              ),
+              icon: SvgHelper.asset(Assets.menu),
               tooltip: 'Menu',
             ),
 
@@ -83,7 +78,7 @@ class TopNavBar extends StatelessWidget {
                     if (!isMobile)
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: VDivider(),
+                        child: VDivider(height: 24),
                       ),
 
                     IconButton(
@@ -121,7 +116,7 @@ class TopNavBar extends StatelessWidget {
 
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: VDivider(),
+                      child: VDivider(height: 24),
                     ),
 
                     CircleAvatar(

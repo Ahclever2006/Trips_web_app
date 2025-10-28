@@ -28,7 +28,7 @@ class NavTabs extends ConsumerWidget {
                 child: NavTab(label: tabs[i], active: tabs[i] == active),
               ),
               if (i != tabs.length - 1)
-                const SizedBox(width: 28), // no spacer after last
+                const SizedBox(width: 40), // no spacer after last
             ],
           ],
         ),
@@ -65,7 +65,7 @@ class NavTab extends StatelessWidget {
       children: [
         Text(label, style: textStyle),
         Transform.translate(
-          offset: const Offset(0, 20.0), // nudge downward
+          offset: const Offset(0, 26.0), // nudge downward
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             height: 3,

@@ -8,6 +8,7 @@ import '../widgets/trip_card.dart';
 import '../widgets/top_nav_bar.dart';
 import '../widgets/round_icon_button.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/v_divider.dart';
 
 class TripsPage extends ConsumerStatefulWidget {
   const TripsPage({super.key});
@@ -52,7 +53,7 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                         ),
                         const Spacer(),
                         RoundIconButton(icon: Assets.filter, onPressed: () {}),
-                        const SizedBox(width: 12),
+                        VDivider(height: 40),
                         FilledButton.icon(
                           style: FilledButton.styleFrom(
                             backgroundColor: DS.accent,
