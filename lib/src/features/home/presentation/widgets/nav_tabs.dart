@@ -19,14 +19,16 @@ class NavTabs extends ConsumerWidget {
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         child: Row(
-          mainAxisSize: MainAxisSize.min, // <- avoids expanding left
+          mainAxisSize: MainAxisSize.min,
           children: [
-            for (final t in tabs) ...[
+            for (var i = 0; i < tabs.length; i++) ...[
               GestureDetector(
-                onTap: () => ref.read(activeNavTabProvider.notifier).state = t,
-                child: NavTab(label: t, active: t == active),
+                onTap: () =>
+                    ref.read(activeNavTabProvider.notifier).state = tabs[i],
+                child: NavTab(label: tabs[i], active: tabs[i] == active),
               ),
-              const SizedBox(width: 28),
+              if (i != tabs.length - 1)
+                const SizedBox(width: 28), // no spacer after last
             ],
           ],
         ),
