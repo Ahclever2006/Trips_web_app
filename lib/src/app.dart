@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/design_system/design_tokens.dart';
-import '../../../core/design_system/text_styles.dart';
-import '../../../core/navigation/app_router.dart';
-import '../../../core/navigation/routes.dart';
+import 'package:trips_web_app/src/core/design_system/design_tokens.dart';
+import 'package:trips_web_app/src/core/design_system/text_styles.dart';
+import 'package:trips_web_app/src/core/navigation/app_router.dart';
+import 'package:trips_web_app/src/core/navigation/routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
