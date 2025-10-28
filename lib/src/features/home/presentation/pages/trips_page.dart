@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/utils/responsive.dart';
+import '../../../../core/navigation/routes.dart';
 import '../viewmodels/trip_list_vm.dart';
+import '../viewmodels/nav_tab_vm.dart';
 import '../widgets/trip_card.dart';
 
 class TripsPage extends ConsumerStatefulWidget {
@@ -187,7 +189,7 @@ class _TopNavBar extends StatelessWidget {
               ), // sit right above hairline
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: const _NavTabs(activeLabel: 'Items'),
+                child: const _NavTabs(),
               ),
             ),
 
@@ -199,7 +201,9 @@ class _TopNavBar extends StatelessWidget {
             tooltip: 'Settings',
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.notifications);
+            },
             icon: const Icon(Icons.notifications_none, color: Colors.white),
             tooltip: 'Notifications',
           ),
@@ -245,18 +249,22 @@ class _VDivider extends StatelessWidget {
 
 // --- Tabs --------------------------------------------------------------------
 
-class _NavTabs extends StatelessWidget {
-  final String activeLabel;
-  const _NavTabs({required this.activeLabel});
+class _NavTabs extends ConsumerWidget {
+  const _NavTabs();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const tabs = ['Items', 'Pricing', 'Info', 'Tasks', 'Analytics'];
+    final active = ref.watch(activeNavTabProvider);
+
     return Row(
       mainAxisSize: MainAxisSize.min, // <- avoids expanding left
       children: [
         for (final t in tabs) ...[
-          _Tab(label: t, active: t == activeLabel),
+          GestureDetector(
+            onTap: () => ref.read(activeNavTabProvider.notifier).state = t,
+            child: _Tab(label: t, active: t == active),
+          ),
           const SizedBox(width: 28),
         ],
       ],
@@ -272,23 +280,31 @@ class _Tab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = Theme.of(context).textTheme.bodyMedium!;
+    final textStyle = base.copyWith(
+      color: active ? Colors.white : const Color(0xFF8F8F8F),
+      fontWeight: active ? FontWeight.w600 : FontWeight.w500,
+    );
+
+    // Measure the rendered text width so the underline matches it.
+    final tp = TextPainter(
+      text: TextSpan(text: label, style: textStyle),
+      textDirection: Directionality.of(context),
+    )..layout();
+
+    double underlineWidth = tp.width;
+    if (underlineWidth < 8) underlineWidth = 8; // ensure visible min width
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: base.copyWith(
-            color: active ? Colors.white : const Color(0xFF8F8F8F),
-            fontWeight: active ? FontWeight.w600 : FontWeight.w500,
-          ),
-        ),
+        Text(label, style: textStyle),
         Transform.translate(
           offset: const Offset(0, 10), // nudge downward
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             height: 3,
-            width: active ? 36 : 0, // compact underline like Figma
+            width: active ? underlineWidth : 0,
             decoration: BoxDecoration(
               color: active ? DS.accent : Colors.transparent,
               borderRadius: BorderRadius.circular(2),

@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import '../../../core/design_system/design_tokens.dart';
 import '../../../core/design_system/text_styles.dart';
-import 'pages/trips_page.dart';
+import '../../../core/navigation/app_router.dart';
+import '../../../core/navigation/routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -36,9 +36,13 @@ class App extends StatelessWidget {
       theme: theme,
       builder: (context, child) {
         final media = MediaQuery.of(context);
-        return MediaQuery(data: media.copyWith(textScaler: const TextScaler.linear(1.0)), child: child!);
+        return MediaQuery(
+          data: media.copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: child!,
+        );
       },
-      home: const TripsPage(),
+      initialRoute: Routes.trips,
+      onGenerateRoute: AppRouter.generateRoute,
     );
   }
 }
