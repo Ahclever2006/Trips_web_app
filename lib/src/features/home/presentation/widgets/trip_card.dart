@@ -71,7 +71,7 @@ class TripCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: FractionallySizedBox(
-              heightFactor: 0.5,
+              heightFactor: 0.55,
               widthFactor: 1.0,
               child: Padding(
                 padding: const EdgeInsets.all(14),
@@ -105,10 +105,12 @@ class TripCard extends StatelessWidget {
                           color: Colors.white70,
                         ),
                         const SizedBox(width: 6),
-                        Text(
-                          '${trip.nights} Nights (${df.format(trip.startDate)} - ${df.format(trip.endDate)})',
-                          style: Theme.of(context).textTheme.labelMedium
-                              ?.copyWith(color: Colors.white70),
+                        Expanded(
+                          child: Text(
+                            '${trip.nights} Nights (${df.format(trip.startDate)} - ${df.format(trip.endDate)})',
+                            style: Theme.of(context).textTheme.labelMedium
+                                ?.copyWith(color: Colors.white70),
+                          ),
                         ),
                       ],
                     ),
@@ -118,9 +120,9 @@ class TripCard extends StatelessWidget {
                     Divider(color: Colors.white.withOpacity(0.25), height: 0.5),
                     const SizedBox(height: 10),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _ParticipantsRow(avatars: trip.participantAvatars),
-                        const Spacer(),
                         Text(
                           '${trip.unfinishedTasks} unfinished tasks',
                           style: Theme.of(context).textTheme.labelMedium

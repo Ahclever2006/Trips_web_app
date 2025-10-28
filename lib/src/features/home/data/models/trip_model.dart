@@ -1,5 +1,4 @@
 import '../../domain/entities/trip.dart';
-import 'dart:convert';
 import '../../../../core/utils/url_utils.dart';
 
 class TripModel {

@@ -57,9 +57,10 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                             backgroundColor: DS.accent,
                             foregroundColor: Colors.black,
                             padding: EdgeInsets.symmetric(
-                              horizontal: isMobile ? 14 : 18,
-                              vertical: isMobile ? 10 : 14,
+                              horizontal: isMobile ? 14 : 20,
+                              vertical: isMobile ? 12 : 18,
                             ),
+                            minimumSize: Size(0, isMobile ? 36 : 44),
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {},
