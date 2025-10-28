@@ -38,13 +38,13 @@ class R {
       case Breakpoint.lgDesktop:
         return 0.75;
       case Breakpoint.desktop:
-        return 0.80;
+        return 0.75;
       case Breakpoint.smDesktop:
-        return 0.85;
+        return 0.75;
       case Breakpoint.tablet:
-        return 0.90;
+        return 0.75;
       case Breakpoint.mobile:
-        return 0.95;
+        return 0.75;
     }
   }
 

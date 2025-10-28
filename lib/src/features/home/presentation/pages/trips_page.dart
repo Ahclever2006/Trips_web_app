@@ -129,6 +129,8 @@ class _TripsPageState extends ConsumerState<TripsPage> {
 
 /// Header: Desktop/Tablet shows tabs; Mobile shows hamburger + Drawer.
 /// Tabs become horizontally scrollable on medium widths to prevent overflow.
+// --- Top Nav Bar -------------------------------------------------------------
+
 class _TopNavBar extends StatelessWidget {
   final bool isMobile;
   final VoidCallback onOpenDrawer;
@@ -140,49 +142,59 @@ class _TopNavBar extends StatelessWidget {
     final showTabs = bp != Breakpoint.mobile;
 
     return Container(
-      color: DS.bg,
+      decoration: const BoxDecoration(
+        color: Colors.black,
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xFF2A2A2A),
+            width: 1,
+          ), // grey hairline
+        ),
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: R.hPadding(context),
-        vertical: isMobile ? 10 : 32,
+        // keep compact so the underline sits near the hairline
+        vertical: isMobile ? 10 : 12,
       ),
       child: Row(
         children: [
           if (isMobile)
             IconButton(
               onPressed: onOpenDrawer,
-              icon: const Icon(Icons.menu, color: DS.textPrimary),
+              icon: const Icon(Icons.menu, color: Colors.white),
               tooltip: 'Menu',
             ),
+
+          // logo
           Text(
             'logo•',
             style: TextStyle(
               color: DS.accent,
               fontWeight: FontWeight.w700,
-              fontSize: isMobile ? 20 : 22,
+              fontSize: isMobile ? 22 : 26,
             ),
           ),
-          const SizedBox(width: 20),
-          if (showTabs)
-            Expanded(
-              // Prevent “in-between” overflow by allowing horizontal scroll.
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: const _NavTabs(activeLabel: 'Items'),
-              ),
-            )
-          else
-            const Spacer(),
+
+          // push tabs toward the right block (like Figma)
+          const Spacer(),
+
+          if (showTabs) const _NavTabs(activeLabel: 'Items'),
+
+          const _VDivider(), // vertical separator
+
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.settings_outlined, color: DS.textPrimary),
+            icon: const Icon(Icons.settings_outlined, color: Colors.white),
             tooltip: 'Settings',
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications_none, color: DS.textPrimary),
+            icon: const Icon(Icons.notifications_none, color: Colors.white),
             tooltip: 'Notifications',
           ),
-          const SizedBox(width: 8),
+
+          const _VDivider(),
+
           const CircleAvatar(
             radius: 14,
             backgroundImage: NetworkImage('https://i.pravatar.cc/100?img=5'),
@@ -193,7 +205,12 @@ class _TopNavBar extends StatelessWidget {
               'John Doe',
               style: Theme.of(
                 context,
-              ).textTheme.bodyMedium!.copyWith(color: DS.textPrimary),
+              ).textTheme.bodyMedium!.copyWith(color: Colors.white),
+            ),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+              color: Colors.white,
             ),
           ],
         ],
@@ -201,6 +218,21 @@ class _TopNavBar extends StatelessWidget {
     );
   }
 }
+
+class _VDivider extends StatelessWidget {
+  const _VDivider();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1,
+      height: 24,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      color: const Color(0xFF2A2A2A),
+    );
+  }
+}
+
+// --- Tabs --------------------------------------------------------------------
 
 class _NavTabs extends StatelessWidget {
   final String activeLabel;
@@ -210,10 +242,11 @@ class _NavTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     const tabs = ['Items', 'Pricing', 'Info', 'Tasks', 'Analytics'];
     return Row(
+      mainAxisSize: MainAxisSize.min, // <- avoids expanding left
       children: [
         for (final t in tabs) ...[
           _Tab(label: t, active: t == activeLabel),
-          const SizedBox(width: 22),
+          const SizedBox(width: 28),
         ],
       ],
     );
@@ -227,19 +260,23 @@ class _Tab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.bodyMedium!.copyWith(
-      color: active ? DS.textPrimary : DS.textSecondary,
-      fontWeight: active ? FontWeight.w600 : FontWeight.w500,
-    );
+    final base = Theme.of(context).textTheme.bodyMedium!;
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: textStyle),
-        const SizedBox(height: 6),
+        Text(
+          label,
+          style: base.copyWith(
+            color: active ? Colors.white : const Color(0xFF8F8F8F),
+            fontWeight: active ? FontWeight.w600 : FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 2), // very small gap to sit near the hairline
         AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 160),
           height: 3,
-          width: active ? 30 : 0,
+          width: active ? 36 : 0, // compact underline like Figma
           decoration: BoxDecoration(
             color: active ? DS.accent : Colors.transparent,
             borderRadius: BorderRadius.circular(2),
