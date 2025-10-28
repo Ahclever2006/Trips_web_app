@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/assets.dart';
 import '../../../../core/design_system/design_tokens.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -15,18 +16,8 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'logo•',
-                style: TextStyle(
-                  color: DS.accent,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 22,
-                ),
-              ),
-            ),
+            const SizedBox(height: 24.0),
+            Image.asset(Assets.logo, width: 88, height: 28),
             const SizedBox(height: 16),
             const Divider(color: DS.border),
             ListTile(

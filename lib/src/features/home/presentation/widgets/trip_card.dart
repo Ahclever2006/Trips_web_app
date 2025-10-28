@@ -56,14 +56,7 @@ class TripCard extends StatelessWidget {
           // Gradient overlay (your current look, don't change)
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Color(0xFF171717)],
-                  stops: [0.10, 0.55],
-                ),
-              ),
+              decoration: BoxDecoration(gradient: DS.tripCardGradient),
             ),
           ),
 
@@ -197,7 +190,7 @@ class _ParticipantsRow extends StatelessWidget {
                 '+$extra',
                 style: Theme.of(
                   context,
-                ).textTheme.labelSmall?.copyWith(color: Colors.white),
+                ).textTheme.labelSmall?.copyWith(color: DS.accent),
               ),
             ),
           ),

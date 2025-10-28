@@ -7,12 +7,12 @@ class DS {
   static const Color cardStroke = Color(0x33222222);
   static const Color textPrimary = Color(0xFFFFFFFF);
   static const Color textSecondary = Color(0xFF999999);
-  static const Color accent = Color(0xFFF5B82E); // gold
+  static const Color accent = Color(0xFFFFC268);
   static const Color border = Color(0xFF2A2A2A);
 
-  static const Color statusPending = Color(0xFF7A4B2E); // brownish
-  static const Color statusProposal = Color(0xFF6B6B6B); // gray
-  static const Color statusReady = Color(0xFF3A7BD5); // blue
+  static const Color statusPending = Color(0xFFC25F30);
+  static const Color statusProposal = Color(0xFFFFC268);
+  static const Color statusReady = Color(0xFF33BFED);
 
   // Radii
   static const BorderRadius r8 = BorderRadius.all(Radius.circular(8));
@@ -23,4 +23,11 @@ class DS {
   static const List<BoxShadow> shadowSm = [
     BoxShadow(color: Color(0x22000000), blurRadius: 12, offset: Offset(0, 6)),
   ];
+
+  static const Gradient tripCardGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.transparent, Color(0xFF171717)],
+    stops: [0.10, 0.55],
+  );
 }
