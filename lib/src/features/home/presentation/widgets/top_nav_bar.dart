@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../core/navigation/routes.dart';
+import '../../../../core/utils/url_utils.dart';
 import 'v_divider.dart';
 import 'nav_tabs.dart';
 
@@ -86,9 +87,14 @@ class TopNavBar extends StatelessWidget {
 
           const VDivider(),
 
-          const CircleAvatar(
+          CircleAvatar(
             radius: 14,
-            backgroundImage: NetworkImage('https://i.pravatar.cc/100?img=5'),
+            backgroundImage: NetworkImage(
+              UrlUtils.corsSafe(
+                'https://randomuser.me/api/portraits/men/88.jpg',
+                size: 48,
+              ),
+            ),
           ),
           if (!isMobile) ...[
             const SizedBox(width: 8),

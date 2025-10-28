@@ -1,12 +1,6 @@
 import '../../domain/entities/trip.dart';
 import 'dart:convert';
-
-String _corsSafe(String url, {int size = 48}) {
-  // Proxy through weserv (adds CORS headers). Strip scheme for their API.
-  final u = url.replaceFirst(RegExp(r'^https?://'), '');
-  // fit=cover keeps the circle crop nice
-  return 'https://images.weserv.nl/?w=$size&h=$size&fit=cover&url=${Uri.encodeComponent(u)}';
-}
+import '../../../../core/utils/url_utils.dart';
 
 class TripModel {
   final String id;
@@ -41,7 +35,7 @@ class TripModel {
     final participantAvatars = <String>[];
     for (var i = 0; i < rawParticipants.length; i++) {
       final url = rawParticipants[i]['avatar_url'] as String;
-      participantAvatars.add(_corsSafe(url, size: 48)); // <-- key line
+      participantAvatars.add(UrlUtils.corsSafe(url, size: 48));
     }
 
     return TripModel(
