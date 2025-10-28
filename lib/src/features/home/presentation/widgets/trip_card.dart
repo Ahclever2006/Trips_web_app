@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/assets.dart';
+import '../../../../core/utils/responsive.dart';
 import '../../../../core/utils/svg_helper.dart';
 import '../../domain/entities/trip.dart';
 
@@ -64,7 +65,7 @@ class TripCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: FractionallySizedBox(
-              heightFactor: 0.56,
+              heightFactor: R.tripCardHeightFactor(context),
               widthFactor: 1.0,
               child: Padding(
                 padding: const EdgeInsets.all(14),
@@ -111,11 +112,15 @@ class TripCard extends StatelessWidget {
 
                     // Divider + participants row pinned to bottom
                     Divider(color: Colors.white.withOpacity(0.25), height: 0.5),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8.0),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _ParticipantsRow(avatars: trip.participantAvatars),
+                        Expanded(
+                          child: _ParticipantsRow(
+                            avatars: trip.participantAvatars,
+                          ),
+                        ),
                         Text(
                           '${trip.unfinishedTasks} unfinished tasks',
                           style: Theme.of(context).textTheme.labelMedium
