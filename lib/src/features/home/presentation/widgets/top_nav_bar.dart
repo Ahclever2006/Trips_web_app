@@ -32,7 +32,10 @@ class TopNavBar extends StatelessWidget {
           ), // grey hairline
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: h, vertical: isMobile ? 8 : 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16.0 : h - 16.0,
+        vertical: isMobile ? 8 : 10,
+      ),
       child: Row(
         children: [
           if (isMobile)
@@ -50,13 +53,10 @@ class TopNavBar extends StatelessWidget {
             ),
 
           // logo
-          Padding(
-            padding: EdgeInsets.only(left: isMobile ? 8 : 0),
-            child: Image.asset(
-              Assets.logo,
-              width: isMobile ? 88 : 110,
-              height: isMobile ? 28 : 34,
-            ),
+          Image.asset(
+            Assets.logo,
+            width: isMobile ? 88 : 110,
+            height: isMobile ? 28 : 34,
           ),
 
           Expanded(

@@ -71,7 +71,7 @@ class TripCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: FractionallySizedBox(
-              heightFactor: 0.55,
+              heightFactor: 0.56,
               widthFactor: 1.0,
               child: Padding(
                 padding: const EdgeInsets.all(14),
