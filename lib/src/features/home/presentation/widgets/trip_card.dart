@@ -29,7 +29,13 @@ class TripCard extends StatelessWidget {
       child: FractionallySizedBox(
         heightFactor: 0.60,
         widthFactor: 1.0,
-        child: Image.network(trip.coverImage, fit: BoxFit.cover),
+        child: Image.network(
+          trip.coverImage,
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
+          filterQuality: FilterQuality.medium,
+          errorBuilder: (_, __, ___) => const ColoredBox(color: Colors.black26),
+        ),
       ),
     );
   }
@@ -64,7 +70,7 @@ class TripCard extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,11 +151,17 @@ class TripCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: DS.r16,
+    final radius = DS.r16;
+
+    // Material handles both shape and clipping -> prevents image bleed on web.
+    return Container(
+      decoration: BoxDecoration(borderRadius: radius),
+      clipBehavior: Clip.antiAliasWithSaveLayer, // <- hard clip
       child: Stack(
-        fit: StackFit.expand,
+        fit: StackFit.loose,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         children: [
+          // Card background (prevents “see-through” at edges)
           _buildCoverImage(),
           _buildMoreButton(),
           _buildGradientOverlay(),
