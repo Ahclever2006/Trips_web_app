@@ -63,7 +63,7 @@ class NavTab extends StatelessWidget {
       children: [
         Text(label, style: textStyle),
         Transform.translate(
-          offset: const Offset(0, 24.0), // nudge downward
+          offset: const Offset(0, 20.0), // nudge downward
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             height: 3,
