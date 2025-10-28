@@ -154,14 +154,14 @@ class _StatusChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.5),
+        color: color.withOpacity(0.2),
         borderRadius: DS.r16,
         border: Border.all(color: color),
       ),
       child: Text(
         label,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: color,
+          color: DS.textPrimary,
           fontWeight: FontWeight.w500,
         ),
       ),
