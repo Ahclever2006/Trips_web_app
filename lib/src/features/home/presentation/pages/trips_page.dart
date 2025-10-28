@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../core/design_system/design_tokens.dart';
-import '../../core/utils/responsive.dart';
+import '../../../../core/design_system/design_tokens.dart';
+import '../../../../core/utils/responsive.dart';
 import '../viewmodels/trip_list_vm.dart';
 import '../widgets/trip_card.dart';
 
@@ -96,8 +96,10 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                               itemCount: s.visible.length,
                               separatorBuilder: (_, __) =>
                                   const SizedBox(height: 16),
-                              itemBuilder: (_, i) =>
-                                  TripCard(trip: s.visible[i]),
+                              itemBuilder: (_, i) => AspectRatio(
+                                aspectRatio: 0.95,
+                                child: TripCard(trip: s.visible[i]),
+                              ),
                             );
                           }
                           return GridView.builder(
@@ -106,7 +108,7 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                                   crossAxisCount: cols, // now 5 on very wide
                                   mainAxisSpacing: 16,
                                   crossAxisSpacing: 16,
-                                  childAspectRatio: 0.75,
+                                  childAspectRatio: R.gridRatio(context),
                                 ),
                             itemCount: s.visible.length,
                             itemBuilder: (_, i) => TripCard(trip: s.visible[i]),

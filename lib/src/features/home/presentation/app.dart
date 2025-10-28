@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import '../core/design_system/design_tokens.dart';
-import '../core/design_system/text_styles.dart';
+import '../../../core/design_system/design_tokens.dart';
+import '../../../core/design_system/text_styles.dart';
 import 'pages/trips_page.dart';
 
 class App extends StatelessWidget {

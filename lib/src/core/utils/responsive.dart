@@ -33,6 +33,21 @@ class R {
     }
   }
 
+  static double gridRatio(BuildContext c) {
+    switch (bp(c)) {
+      case Breakpoint.lgDesktop:
+        return 0.75;
+      case Breakpoint.desktop:
+        return 0.80;
+      case Breakpoint.smDesktop:
+        return 0.85;
+      case Breakpoint.tablet:
+        return 0.90;
+      case Breakpoint.mobile:
+        return 0.95;
+    }
+  }
+
   /// Horizontal padding that scales a bit with width to avoid huge gutters.
   static double hPadding(BuildContext c) {
     final w = MediaQuery.of(c).size.width;

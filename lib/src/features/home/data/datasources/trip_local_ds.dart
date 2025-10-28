@@ -1,4 +1,4 @@
-import '../../core/utils/asset_loader.dart';
+import '../../../../core/utils/asset_loader.dart';
 import '../models/trip_model.dart';
 
 abstract class TripLocalDataSource {
