@@ -46,11 +46,7 @@ class TripCard extends StatelessWidget {
               ),
               margin: const EdgeInsets.all(16.0),
               padding: const EdgeInsets.all(8.0),
-              child: const Icon(
-                Icons.more_horiz,
-                color: Colors.white,
-                size: 20,
-              ),
+              child: SvgHelper.asset(Assets.more),
             ),
           ),
 

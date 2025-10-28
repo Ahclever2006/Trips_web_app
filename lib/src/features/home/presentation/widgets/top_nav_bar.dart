@@ -94,8 +94,7 @@ class TopNavBar extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: SvgHelper.asset(
                           Assets.settings,
-                          width: 20,
-                          height: 20,
+
                           color: Colors.white,
                         ),
                       ),
@@ -113,8 +112,7 @@ class TopNavBar extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: SvgHelper.asset(
                           Assets.notification,
-                          width: 20,
-                          height: 20,
+
                           color: Colors.white,
                         ),
                       ),
@@ -127,7 +125,7 @@ class TopNavBar extends StatelessWidget {
                     ),
 
                     CircleAvatar(
-                      radius: 14,
+                      radius: 24,
                       backgroundImage: NetworkImage(
                         UrlUtils.corsSafe(
                           'https://randomuser.me/api/portraits/men/88.jpg',
@@ -137,7 +135,7 @@ class TopNavBar extends StatelessWidget {
                     ),
 
                     if (!isMobile) ...[
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 16.0),
                       // Let the name shrink instead of pushing overflow
                       ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 120),
@@ -150,13 +148,9 @@ class TopNavBar extends StatelessWidget {
                           ).textTheme.bodyMedium!.copyWith(color: Colors.white),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 18,
-                          color: Colors.white,
-                        ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SvgHelper.asset(Assets.arrowDown),
                       ),
                     ] else
                       const SizedBox(width: 12),

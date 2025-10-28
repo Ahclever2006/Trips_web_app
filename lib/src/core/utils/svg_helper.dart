@@ -16,10 +16,10 @@ class SvgHelper {
   }) {
     return SvgPicture.asset(
       assetName,
-      width: width,
-      height: height,
+      width: width ?? 24.0,
+      height: height ?? 24.00,
       fit: fit,
-      color: color,
+      color: color ?? Colors.white,
       semanticsLabel: semanticsLabel,
       placeholderBuilder: (context) => SizedBox(width: width, height: height),
     );

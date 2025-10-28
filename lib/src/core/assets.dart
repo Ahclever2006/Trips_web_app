@@ -12,4 +12,6 @@ class Assets {
   static const menu = '${_icons}trips_menu.svg';
   static const arrowDown = '${_icons}trips_arrow_down.svg';
   static const calendar = '${_icons}trips_calendar.svg';
+  static const filter = '${_icons}trips_filter.svg';
+  static const more = '${_icons}trips_more.svg';
 }

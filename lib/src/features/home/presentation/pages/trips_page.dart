@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:trips_web_app/src/core/assets.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/utils/responsive.dart';
 import '../viewmodels/trip_list_vm.dart';
@@ -50,7 +51,7 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                               .copyWith(color: DS.textPrimary),
                         ),
                         const Spacer(),
-                        RoundIconButton(icon: Icons.tune, onPressed: () {}),
+                        RoundIconButton(icon: Assets.filter, onPressed: () {}),
                         const SizedBox(width: 12),
                         FilledButton.icon(
                           style: FilledButton.styleFrom(

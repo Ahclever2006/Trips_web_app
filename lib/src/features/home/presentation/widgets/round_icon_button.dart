@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/design_system/design_tokens.dart';
+import '../../../../core/utils/svg_helper.dart';
 
 class RoundIconButton extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final VoidCallback onPressed;
   const RoundIconButton({
     required this.icon,
@@ -20,7 +20,7 @@ class RoundIconButton extends StatelessWidget {
         onTap: onPressed,
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Icon(icon, color: DS.textPrimary, size: 18),
+          child: SvgHelper.asset(icon),
         ),
       ),
     );
