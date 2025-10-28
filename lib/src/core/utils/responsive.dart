@@ -48,20 +48,20 @@ class R {
     }
   }
 
-  static double tripCardHeightFactor(BuildContext c) {
-    switch (bp(c)) {
-      case Breakpoint.lgDesktop:
-        return 0.65;
-      case Breakpoint.desktop:
-        return 0.69;
-      case Breakpoint.smDesktop:
-        return 0.69;
-      case Breakpoint.tablet:
-        return 0.69;
-      case Breakpoint.mobile:
-        return 0.55;
-    }
-  }
+  // static double tripCardHeightFactor(BuildContext c) {
+  //   switch (bp(c)) {
+  //     case Breakpoint.lgDesktop:
+  //       return 0.65;
+  //     case Breakpoint.desktop:
+  //       return 0.69;
+  //     case Breakpoint.smDesktop:
+  //       return 0.69;
+  //     case Breakpoint.tablet:
+  //       return 0.69;
+  //     case Breakpoint.mobile:
+  //       return 0.55;
+  //   }
+  // }
 
   /// Horizontal padding that scales a bit with width to avoid huge gutters.
   static double hPadding(BuildContext c) {

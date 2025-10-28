@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/assets.dart';
-import '../../../../core/utils/responsive.dart';
 import '../../../../core/utils/svg_helper.dart';
 import '../../domain/entities/trip.dart';
 import '../../domain/enums/trip_status.dart';
@@ -73,9 +72,9 @@ class TripCard extends StatelessWidget {
             StatusChip(status: status, color: _statusColor(status)),
             const SizedBox(height: 32.0),
             _buildTripTitle(context),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 12.0),
             _buildDateInfo(context, df),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 16.0),
             _buildFooter(context),
           ],
         ),
@@ -120,7 +119,7 @@ class TripCard extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Divider(color: Colors.white.withOpacity(0.25), height: 0.25),
+        Divider(color: Colors.white.withOpacity(0.25), height: 1.0),
         const SizedBox(height: 16.0),
         Row(
           children: [

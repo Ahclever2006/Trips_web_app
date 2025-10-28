@@ -15,7 +15,7 @@ class ParticipantsRow extends StatelessWidget {
     final extra = avatars.length - shown.length;
 
     return SizedBox(
-      height: _avatarRadius * 2.15,
+      height: _avatarRadius * 3,
       child: Stack(
         children: [
           for (int i = 0; i < shown.length; i++)
