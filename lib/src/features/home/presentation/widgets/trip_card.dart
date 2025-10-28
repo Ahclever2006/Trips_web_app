@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/design_system/design_tokens.dart';
+import '../../../../core/design_system/dimensions.dart';
 import '../../../../core/assets.dart';
 import '../../../../core/utils/svg_helper.dart';
 import '../../domain/entities/trip.dart';
@@ -27,7 +28,7 @@ class TripCard extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: FractionallySizedBox(
-        heightFactor: 0.60,
+        heightFactor: Dimensions.cardImageHeightFactor,
         widthFactor: 1.0,
         child: Image.network(
           trip.coverImage,
@@ -48,8 +49,8 @@ class TripCard extends StatelessWidget {
           color: Colors.black54,
           shape: BoxShape.circle,
         ),
-        margin: const EdgeInsets.all(16.0),
-        padding: const EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(Dimensions.p16),
+        padding: EdgeInsets.all(Dimensions.p8),
         child: SvgHelper.asset(Assets.more),
       ),
     );
@@ -70,17 +71,17 @@ class TripCard extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(Dimensions.p14),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StatusChip(status: status, color: _statusColor(status)),
-            const SizedBox(height: 32.0),
+            SizedBox(height: Dimensions.p24 + Dimensions.p8),
             _buildTripTitle(context),
-            const SizedBox(height: 12.0),
+            SizedBox(height: Dimensions.p12),
             _buildDateInfo(context, df),
-            const SizedBox(height: 16.0),
+            SizedBox(height: Dimensions.p16),
             _buildFooter(context),
           ],
         ),
@@ -104,10 +105,10 @@ class TripCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 2),
+          padding: EdgeInsets.only(bottom: Dimensions.p4 / 2),
           child: SvgHelper.asset(Assets.calendar, color: DS.textSecondary),
         ),
-        const SizedBox(width: 6),
+        SizedBox(width: Dimensions.p6),
         Expanded(
           child: Text(
             '${trip.nights} Nights (${df.format(trip.startDate)} - ${df.format(trip.endDate)})',
@@ -124,8 +125,11 @@ class TripCard extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Divider(color: Colors.white.withOpacity(0.25), height: 1.0),
-        const SizedBox(height: 16.0),
+        Divider(
+          color: Colors.white.withOpacity(Dimensions.overlayOpacity),
+          height: Dimensions.dividerHeight,
+        ),
+        SizedBox(height: Dimensions.p16),
         Row(
           children: [
             Expanded(

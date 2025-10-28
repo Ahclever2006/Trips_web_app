@@ -4,6 +4,7 @@ import '../../../../core/navigation/routes.dart';
 import '../../../../core/utils/url_utils.dart';
 import '../../../../core/assets.dart';
 import '../../../../core/utils/svg_helper.dart';
+import 'nav_bar_dimensions.dart';
 import 'v_divider.dart';
 import 'nav_tabs.dart';
 
@@ -33,8 +34,12 @@ class TopNavBar extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 16.0 : h - 16.0,
-        vertical: isMobile ? 12 : 16,
+        horizontal: isMobile
+            ? NavBarDimensions.mobileHPadding
+            : h - NavBarDimensions.mobileHPadding,
+        vertical: isMobile
+            ? NavBarDimensions.mobileVPadding
+            : NavBarDimensions.desktopVPadding,
       ),
       child: Row(
         children: [
@@ -50,8 +55,12 @@ class TopNavBar extends StatelessWidget {
           // logo
           Image.asset(
             Assets.logo,
-            width: isMobile ? 88 : 110,
-            height: isMobile ? 28 : 34,
+            width: isMobile
+                ? NavBarDimensions.mobileLogoWidth
+                : NavBarDimensions.desktopLogoWidth,
+            height: isMobile
+                ? NavBarDimensions.mobileLogoHeight
+                : NavBarDimensions.desktopLogoHeight,
           ),
 
           Expanded(
@@ -67,7 +76,9 @@ class TopNavBar extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 1),
                         child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 560),
+                          constraints: BoxConstraints(
+                            maxWidth: NavBarDimensions.maxTabsWidth,
+                          ),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: const NavTabs(),
@@ -76,9 +87,11 @@ class TopNavBar extends StatelessWidget {
                       ),
 
                     if (!isMobile)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: VDivider(height: 24),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: NavBarDimensions.dividerPadding,
+                        ),
+                        child: VDivider(height: NavBarDimensions.dividerHeight),
                       ),
 
                     IconButton(
@@ -86,17 +99,22 @@ class TopNavBar extends StatelessWidget {
                       constraints: const BoxConstraints(),
                       onPressed: () {},
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: EdgeInsets.symmetric(
+                          vertical: NavBarDimensions.iconPadding,
+                        ),
                         child: SvgHelper.asset(
                           Assets.settings,
-
                           color: Colors.white,
                         ),
                       ),
                       tooltip: 'Settings',
                     ),
 
-                    SizedBox(width: isMobile ? 12 : 24),
+                    SizedBox(
+                      width: isMobile
+                          ? NavBarDimensions.iconSpacingMobile
+                          : NavBarDimensions.iconSpacingDesktop,
+                    ),
 
                     IconButton(
                       padding: EdgeInsets.zero,
@@ -104,36 +122,41 @@ class TopNavBar extends StatelessWidget {
                       onPressed: () =>
                           Navigator.of(context).pushNamed(Routes.notifications),
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: EdgeInsets.symmetric(
+                          vertical: NavBarDimensions.iconPadding,
+                        ),
                         child: SvgHelper.asset(
                           Assets.notification,
-
                           color: Colors.white,
                         ),
                       ),
                       tooltip: 'Notifications',
                     ),
 
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: VDivider(height: 24),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: NavBarDimensions.dividerPadding,
+                      ),
+                      child: VDivider(height: NavBarDimensions.dividerHeight),
                     ),
 
                     CircleAvatar(
-                      radius: 24,
+                      radius: NavBarDimensions.avatarRadius,
                       backgroundImage: NetworkImage(
                         UrlUtils.corsSafe(
                           'https://randomuser.me/api/portraits/men/88.jpg',
-                          size: 48,
+                          size: NavBarDimensions.avatarSize,
                         ),
                       ),
                     ),
 
                     if (!isMobile) ...[
-                      const SizedBox(width: 16.0),
+                      SizedBox(width: NavBarDimensions.nameSpacing),
                       // Let the name shrink instead of pushing overflow
                       ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 120),
+                        constraints: BoxConstraints(
+                          maxWidth: NavBarDimensions.maxNameWidth,
+                        ),
                         child: Text(
                           'John Doe',
                           overflow: TextOverflow.ellipsis,
@@ -144,11 +167,13 @@ class TopNavBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: NavBarDimensions.arrowSpacing,
+                        ),
                         child: SvgHelper.asset(Assets.arrowDown),
                       ),
                     ] else
-                      const SizedBox(width: 12),
+                      SizedBox(width: NavBarDimensions.iconSpacingMobile),
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/design_system/design_tokens.dart';
+import '../../../../core/design_system/dimensions.dart';
 import '../../domain/enums/trip_status.dart';
 
 class StatusChip extends StatelessWidget {
@@ -11,10 +12,13 @@ class StatusChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimensions.p16,
+        vertical: Dimensions.p4,
+      ),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.2),
-        borderRadius: DS.r16,
+        color: color.withOpacity(Dimensions.chipOpacity),
+        borderRadius: BorderRadius.circular(Dimensions.cardCornerRadius),
         border: Border.all(color: color),
       ),
       child: Text(
