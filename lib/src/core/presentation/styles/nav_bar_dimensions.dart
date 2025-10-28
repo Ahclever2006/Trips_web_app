@@ -10,6 +10,7 @@ class NavBarDimensions {
   static const double maxNameWidth = 120.0;
   static const double navBarHeight = 64.0;
   static const double dividerPadding = 16.0;
+  static const double mobileDividerPadding = 8.0;
   static const double dividerHeight = 24.0;
   static const double iconPadding = 4.0;
   static const double maxTabsWidth = 600.0;

@@ -16,9 +16,10 @@ class NavBarDimensions {
   static const double desktopLogoHeight = 34.0;
 
   // Spacing
-  static const double iconSpacingMobile = 12.0;
+  static const double iconSpacingMobile = 8.0;
   static const double iconSpacingDesktop = 24.0;
   static const double dividerPadding = 16.0;
+  static const double mobileDividerPadding = 6.0;
   static const double iconPadding = 8.0;
   static const double nameSpacing = 16.0;
   static const double arrowSpacing = 8.0;

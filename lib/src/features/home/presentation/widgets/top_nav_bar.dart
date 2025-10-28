@@ -4,6 +4,7 @@ import '../../../../core/navigation/routes.dart';
 import '../../../../core/utils/url_utils.dart';
 import '../../../../core/assets.dart';
 import '../../../../core/utils/svg_helper.dart';
+import '../../../../core/utils/platform_helper.dart';
 import 'nav_bar_dimensions.dart';
 import 'v_divider.dart';
 import 'nav_tabs.dart';
@@ -34,7 +35,9 @@ class TopNavBar extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: isMobile
+        horizontal: PlatformHelper.isNativeMobile
+            ? 0
+            : isMobile
             ? NavBarDimensions.mobileHPadding
             : h - NavBarDimensions.mobileHPadding,
         vertical: isMobile
@@ -102,16 +105,13 @@ class TopNavBar extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           vertical: NavBarDimensions.iconPadding,
                         ),
-                        child: SvgHelper.asset(
-                          Assets.settings,
-                          color: Colors.white,
-                        ),
+                        child: SvgHelper.asset(Assets.settings),
                       ),
                       tooltip: 'Settings',
                     ),
 
                     SizedBox(
-                      width: isMobile
+                      width: PlatformHelper.isAnyMobile
                           ? NavBarDimensions.iconSpacingMobile
                           : NavBarDimensions.iconSpacingDesktop,
                     ),
@@ -135,7 +135,9 @@ class TopNavBar extends StatelessWidget {
 
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: NavBarDimensions.dividerPadding,
+                        horizontal: PlatformHelper.isAnyMobile
+                            ? NavBarDimensions.mobileDividerPadding
+                            : NavBarDimensions.dividerPadding,
                       ),
                       child: VDivider(height: NavBarDimensions.dividerHeight),
                     ),

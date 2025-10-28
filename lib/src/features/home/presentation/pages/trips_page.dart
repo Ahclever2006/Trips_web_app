@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:trips_web_app/src/core/assets.dart';
+import '../../../../core/utils/platform_helper.dart';
 import '../../../../core/design_system/design_tokens.dart';
 import '../../../../core/utils/responsive.dart';
 import '../viewmodels/trip_list_vm.dart';
@@ -60,9 +61,16 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                             foregroundColor: Colors.black,
                             padding: EdgeInsets.symmetric(
                               horizontal: isMobile ? 14 : 20,
-                              vertical: 18,
+                              vertical: PlatformHelper.isAnyMobile
+                                  ? 12
+                                  : (isMobile ? 16 : 18),
                             ),
-                            minimumSize: Size(0, isMobile ? 36 : 44),
+                            minimumSize: Size(
+                              0,
+                              PlatformHelper.isAnyMobile
+                                  ? 32
+                                  : (isMobile ? 40 : 44),
+                            ),
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {},
@@ -99,6 +107,7 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                           final cols = R.gridCols(context);
                           if (cols == 1) {
                             return ListView.separated(
+                              padding: EdgeInsets.zero,
                               itemCount: s.visible.length,
                               separatorBuilder: (_, __) =>
                                   const SizedBox(height: 16),
@@ -111,6 +120,7 @@ class _TripsPageState extends ConsumerState<TripsPage> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: GridView.builder(
+                              padding: EdgeInsets.zero,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: cols, // now 5 on very wide
