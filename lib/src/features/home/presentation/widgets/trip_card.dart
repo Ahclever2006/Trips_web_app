@@ -71,9 +71,9 @@ class TripCard extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final height = constraints.maxHeight;
-        final cardMiddle = height * 0.50;
+        final cardMiddle = height * 0.5;
         final contentStartY =
-            height * 0.55; // Start content slightly above middle
+            height * 0.50; // Start content slightly above middle
         final contentHeight =
             height - contentStartY; // Available height for content
 
@@ -96,7 +96,7 @@ class TripCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Spacer(flex: 2),
+                    const Spacer(flex: 3),
                     _buildTripTitle(context),
                     const Spacer(flex: 1),
                     _buildDateInfo(context, df),
