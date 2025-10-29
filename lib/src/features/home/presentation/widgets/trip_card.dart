@@ -68,24 +68,47 @@ class TripCard extends StatelessWidget {
     final df = DateFormat('MMM d, yyyy');
     final status = trip.tripStatus;
 
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: EdgeInsets.all(Dimensions.p14),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final height = constraints.maxHeight;
+        final cardMiddle = height * 0.50;
+        final contentStartY =
+            height * 0.55; // Start content slightly above middle
+        final contentHeight =
+            height - contentStartY; // Available height for content
+
+        return Stack(
+          fit: StackFit.expand,
           children: [
-            StatusChip(status: status, color: _statusColor(status)),
-            SizedBox(height: Dimensions.p24 + Dimensions.p8),
-            _buildTripTitle(context),
-            SizedBox(height: Dimensions.p12),
-            _buildDateInfo(context, df),
-            SizedBox(height: Dimensions.p16),
-            _buildFooter(context),
+            Positioned(
+              top: cardMiddle,
+              left: Dimensions.p14,
+              child: StatusChip(status: status, color: _statusColor(status)),
+            ),
+            Positioned(
+              top: contentStartY,
+              left: 0,
+              right: 0,
+              height: contentHeight,
+              child: Container(
+                padding: EdgeInsets.all(Dimensions.p14),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Spacer(flex: 2),
+                    _buildTripTitle(context),
+                    const Spacer(flex: 1),
+                    _buildDateInfo(context, df),
+                    const Spacer(flex: 1),
+                    _buildFooter(context),
+                  ],
+                ),
+              ),
+            ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -133,11 +156,11 @@ class TripCard extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              flex: 6,
+              flex: 55,
               child: ParticipantsRow(avatars: trip.participantAvatars),
             ),
             Expanded(
-              flex: 4,
+              flex: 45,
               child: Text(
                 '${trip.unfinishedTasks} unfinished tasks',
                 overflow: TextOverflow.ellipsis,
