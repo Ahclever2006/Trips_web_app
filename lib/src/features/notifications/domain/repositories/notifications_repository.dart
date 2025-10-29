@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
+import '../../../../core/error/failure.dart';
 import '../entities/notification.dart';
 
 abstract class NotificationsRepository {
-  Future<List<AppNotification>> getNotifications();
+  Future<Either<Failure, List<AppNotification>>> getNotifications();
 }
