@@ -35,7 +35,7 @@ class TopNavBar extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: PlatformHelper.isNativeMobile
+        horizontal: PlatformHelper.isAnyMobile
             ? 0
             : isMobile
             ? NavBarDimensions.mobileHPadding
